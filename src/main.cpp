@@ -34,7 +34,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x00000d5a9113f87575c77eb5442845ff8a0014f6e79e2dd2317d88946ef910da");
+uint256 hashGenesisBlock("0x00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b");
 static const unsigned int timeGenesisBlock = 1394554772;
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20);
 CBlockIndex* pindexGenesisBlock = NULL;
@@ -2786,7 +2786,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0x1A;
         pchMessageStart[2] = 0x39;
         pchMessageStart[3] = 0xF7;
-        hashGenesisBlock = uint256("0x00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96");
+        hashGenesisBlock = uint256("0x00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b");
     }
 
     //
@@ -2833,6 +2833,18 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
   vMerkleTree: 868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776 
 */
 
+		/*
+		   00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b
+		   00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96
+		   8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
+		   CBlock(hash=00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, nTime=1394554772, nBits=1e0fffff, nNonce=17002007, vtx=1)
+		     CTransaction(hash=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, ver=1, vin.size=1, vout.size=1, nLockTime=0, strTxComment=)
+			     CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01040e4f324f20434f494e205354415254)
+				     CTxOut(nValue=1.00000, scriptPubKey=04678afdb0fe5548271967f1a67130)
+					   vMerkleTree: 8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
+					   Assertion failed: (block.hashMerkleRoot == uint256("0x72596a6a36d42416b5486386c6e2b7e339782ef4eb49fb8a60ec7dc3475da545")), function InitBlockIndex, file src/main.cpp, line 2870.
+		   */
+
         // Genesis block
         const char* pszTimestamp = "O2O COIN START";
         CTransaction txNew;
@@ -2848,12 +2860,12 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         block.nVersion = 112;
         block.nTime    = timeGenesisBlock;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = 16888732; 
+        block.nNonce   = 17002007; 
 
         if (fTestNet)
         {
-            block.nTime    = 1373481000;
-            block.nNonce   = 905523645;
+            block.nTime    = timeGenesisBlock;
+            block.nNonce   = 17002007;
         }
 
         //// debug print
@@ -2867,7 +2879,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         block.print();
-        assert(block.hashMerkleRoot == uint256("0x72596a6a36d42416b5486386c6e2b7e339782ef4eb49fb8a60ec7dc3475da545"));
+        assert(block.hashMerkleRoot == uint256("0x8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752"));
         
  
  
