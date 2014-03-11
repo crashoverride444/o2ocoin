@@ -35,7 +35,7 @@ unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
 uint256 hashGenesisBlock("0x00000d5a9113f87575c77eb5442845ff8a0014f6e79e2dd2317d88946ef910da");
-static const unsigned int timeGenesisBlock = 1387807823;
+static const unsigned int timeGenesisBlock = 1394554772;
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20);
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -2834,7 +2834,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
 */
 
         // Genesis block
-        const char* pszTimestamp = "BIN COIN START";
+        const char* pszTimestamp = "O2O COIN START";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
