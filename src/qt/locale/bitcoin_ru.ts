@@ -1448,7 +1448,7 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a O2ocoin address (e.g. 7NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <source>Enter a O2ocoin address (e.g. oL398BQeVW15fxeestaa8LjxyM5r7RuvZg)</source>
         <translation>Введите O2ocoin-адрес (например 7LA5FtQhnnWnkK6zjFfutR7Stiit4wKd63)</translation>
     </message>
 </context>
@@ -1544,8 +1544,8 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. 7NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>Адрес, которым было подписано сообщение (напр. 7NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <source>The address the message was signed with (e.g. oL398BQeVW15fxeestaa8LjxyM5r7RuvZg)</source>
+        <translation>Адрес, которым было подписано сообщение (напр. oL398BQeVW15fxeestaa8LjxyM5r7RuvZg)</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -1565,8 +1565,8 @@ Address: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a O2ocoin address (e.g. 7NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <translation>Введите адрес O2ocoin (напр. 7NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <source>Enter a O2ocoin address (e.g. oL398BQeVW15fxeestaa8LjxyM5r7RuvZg)</source>
+        <translation>Введите адрес O2ocoin (напр. oL398BQeVW15fxeestaa8LjxyM5r7RuvZg)</translation>
     </message>
     <message>
         <location line="-2"/>
