@@ -7,6 +7,8 @@ QT += network
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE
 CONFIG += no_include_pwd
 CONFIG += thread
+DEP_PATH=$(HOME)/lib
+
 
 # for boost 1.37, add -mt to the boost libraries
 # use: qmake BOOST_LIB_SUFFIX=-mt
@@ -17,13 +19,22 @@ CONFIG += thread
 # Dependency library locations can be customized with:
 #    BOOST_INCLUDE_PATH, BOOST_LIB_PATH, BDB_INCLUDE_PATH,
 #    BDB_LIB_PATH, OPENSSL_INCLUDE_PATH and OPENSSL_LIB_PATH respectively
-BOOST_INCLUDE_PATH = D:/boost_1_53_0
-BOOST_LIB_PATH = D:/boost_1_53_0/stage/lib
-
+BOOST_INCLUDE_PATH = $$DEP_PATH/boost_1_53_0
+BOOST_LIB_PATH = $$DEP_PATH/boost_1_53_0/stage/lib
+MINIUPNPC_LIB_PATH=$$DEP_PATH/miniupnpc
+MINIUPNPC_INCLUDE_PATH=$$DEP_PATH
+BDB_INCLUDE_PATH=$$DEP_PATH/db-4.8.30.NC/build_unix
+BDB_LIB_PATH=$$DEP_PATH/db-4.8.30.NC/build_unix
+OPENSSL_INCLUDE_PATH=$$DEP_PATH/openssl-1.0.1f/include
+OPENSSL_LIB_PATH=$$DEP_PATH/openssl-1.0.1f
+QMAKE_LRELEASE=$$[QT_INSTALL_BINS]/lrelease
+BOOST_LIB_SUFFIX=-mt
 
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
+
+QMAKE_LFLAGS *= -Wl,--allow-multiple-definition
 
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
