@@ -1093,33 +1093,32 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 }
 
 static const int64 nGenesisBlockRewardCoin = 1 * COIN;
+static const int64 nBlockRewardStartCoin = 1000000 * COIN;
+static const int64 nBlockRewardMinimumCoin = 10000 * COIN;
 
-static const int64 nTargetTimespan = 65536 ; // about 18 hour
-static const int64 nTargetSpacing = 64; // 64 seconds
-static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 1024 blocks
+static const int64 nTargetTimespan = 7200; // about 2 hours.
+static const int64 nTargetSpacing = 60; // 60 seconds, 1 minute.
+static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 120 blocks
 
 int64 static GetBlockValue(int nHeight, int64 nFees, unsigned int nBits)
 {
     if(nHeight == 0){
-		return 1 * COIN;
+		return  nGenesisBlockRewardCoin;
 	}
 	
-	int64 nSubsidy = 1024 * COIN;
+	int64 nSubsidy = nBlockRewardStartCoin;
 	
-	// Subsidy is cut in half every 512000 blocks
-    nSubsidy >>= (nHeight / 512000);
+	// Subsidy is cut in half every 72000 blocks
+    nSubsidy >>= (nHeight / 72000);
 	
-	int64 modNumber = nHeight % 1024;
-	
-	if(modNumber == 0){
-		modNumber = 1024; //every 1024 have a big bonus
+	 // Minimum subsidy
+	if (nSubsidy < nBlockRewardMinimumCoin) {
+		nSubsidy = nBlockRewardMinimumCoin;
 	}
-	
-	nSubsidy = nSubsidy * modNumber;
-	
-	//premined 8% for dev, support, bounty, and giveaway etc
-	if(nHeight > 9 && nHeight < 128){
-		nSubsidy = 350000000 * COIN;
+
+	//premined 1% for dev, support, bounty, and giveaway etc.
+	if(nHeight > 9 && nHeight < 40) {
+		nSubsidy = 100000000 * COIN;
 	}
 	
     return nSubsidy + nFees;
