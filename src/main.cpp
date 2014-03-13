@@ -1102,14 +1102,17 @@ static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 120 blocks
 
 int64 static GetBlockValue(int nHeight, int64 nFees, unsigned int nBits)
 {
+	int i = 0;
     if(nHeight == 0){
 		return  nGenesisBlockRewardCoin;
 	}
 	
 	int64 nSubsidy = nBlockRewardStartCoin;
 	
-	// Subsidy is cut in half every 72000 blocks
-    nSubsidy >>= (nHeight / 72000);
+	// Subsidy is cut in ratio of 0.7 every 72000 blocks.
+	for(i = nHeight / 72000; i > 0; --i) {
+		nSubsidy = (int64)(nSubsidy * 0.7);
+	}
 	
 	 // Minimum subsidy
 	if (nSubsidy < nBlockRewardMinimumCoin) {
