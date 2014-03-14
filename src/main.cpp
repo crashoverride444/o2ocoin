@@ -34,7 +34,8 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 map<uint256, CBlockIndex*> mapBlockIndex;
 
-uint256 hashGenesisBlock("0x000007ad4c2c54d347fd335b37ed91cb906041b7e900f9de024749705e8cedf3");
+uint256 hashGenesisBlock("0x00000b3572bc25579e2bac993f4a9f1c39e13e03bb4e8774a02371ff7ef02b62");
+
 static const unsigned int timeGenesisBlock = 1394801998;
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20);
 CBlockIndex* pindexGenesisBlock = NULL;
@@ -2786,7 +2787,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0x1A;
         pchMessageStart[2] = 0x39;
         pchMessageStart[3] = 0xF7;
-        hashGenesisBlock = uint256("0x000007ad4c2c54d347fd335b37ed91cb906041b7e900f9de024749705e8cedf3");
+        hashGenesisBlock = uint256("0x00000b3572bc25579e2bac993f4a9f1c39e13e03bb4e8774a02371ff7ef02b62");
     }
 
     //
@@ -2812,58 +2813,25 @@ bool InitBlockIndex() {
     // Only add the genesis block if not reindexing (in which case we reuse the one already on disk)
     if (!fReindex) {
         // Genesis Block:
-/*
-00000c257b93a36e9a4318a64398d661866341331a984e2b486414fc5bb16ccd
-000002ad378e6403ff83488eb33f36402f838993d8e2aaf2849f30f0c6994c50
-868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776
-CBlock(hash=00000c257b93a36e9a4318a64398d661866341331a984e2b486414fc5bb16ccd, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776, nTime=1374408079, nBits=1e0fffff, nNonce=12058113, vtx=1)
-  CTransaction(hash=868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776, ver=1, vin.size=1, vout.size=1, nLockTime=0, strTxComment=)
-    CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d0104423231204a756c7920323031332c2054686520477561726469616e2c20546573636f20626f7373207361797320636865617020666f6f6420657261206973206f766572)
-    CTxOut(nValue=1.00000, scriptPubKey=04678afdb0fe5548271967f1a67130)
-  vMerkleTree: 868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776 
-  
-testnet:
-00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96
-000007e82a36afe58a204aa75b8d6d7d1661a1216dc631927857726f8624c5ab
-868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776
-CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776, nTime=1373481000, nBits=1e0fffff, nNonce=905523645, vtx=1)
-  CTransaction(hash=868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776, ver=1, vin.size=1, vout.size=1, nLockTime=0, strTxComment=)
-    CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d0104423231204a756c7920323031332c2054686520477561726469616e2c20546573636f20626f7373207361797320636865617020666f6f6420657261206973206f766572)
-    CTxOut(nValue=1.00000, scriptPubKey=04678afdb0fe5548271967f1a67130)
-  vMerkleTree: 868b2fb28cb1a0b881480cc85eb207e29e6ae75cdd6d26688ed34c2d2d23c776 
-*/
-
 		/*
-		   00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b
-		   00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96
-		   8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
-		   CBlock(hash=00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, nTime=1394554772, nBits=1e0fffff, nNonce=17002007, vtx=1)
-		     CTransaction(hash=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, ver=1, vin.size=1, vout.size=1, nLockTime=0, strTxComment=)
-			     CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01040e4f324f20434f494e205354415254)
-				     CTxOut(nValue=1.00000, scriptPubKey=04678afdb0fe5548271967f1a67130)
-					   vMerkleTree: 8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
-					   Assertion failed: (block.hashMerkleRoot == uint256("0x72596a6a36d42416b5486386c6e2b7e339782ef4eb49fb8a60ec7dc3475da545")), function InitBlockIndex, file src/main.cpp, line 2870.
-		   */
-
-		/*
+		   00000b3572bc25579e2bac993f4a9f1c39e13e03bb4e8774a02371ff7ef02b62
 		   000007ad4c2c54d347fd335b37ed91cb906041b7e900f9de024749705e8cedf3
-		   00000190cebcd3fa96ead6ca5cd4356cf4ad5dc752196088f6a67a5c04c1b94b
 		   8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
-		   CBlock(hash=000007ad4c2c54d347fd335b37ed91cb906041b7e900f9de024749705e8cedf3, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, nTime=1394703570, nBits=1e0fffff, nNonce=17151238, vtx=1)
+		   CBlock(hash=00000b3572bc25579e2bac993f4a9f1c39e13e03bb4e8774a02371ff7ef02b62, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, nTime=1394801998, nBits=1e0fffff, nNonce=17341653, vtx=1)
 		     CTransaction(hash=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, ver=1, vin.size=1, vout.size=1, nLockTime=0, strTxComment=)
 			     CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01040e4f324f20434f494e205354415254)
 				     CTxOut(nValue=1.00000, scriptPubKey=04678afdb0fe5548271967f1a67130)
 					   vMerkleTree: 8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
 					   Searching for genesis block...
-					   block.nTime = 1394703570
-					   block.nNonce = 17151238
-					   block.GetHash = 000007ad4c2c54d347fd335b37ed91cb906041b7e900f9de024749705e8cedf3
-					   CBlock(hash=000007ad4c2c54d347fd335b37ed91cb906041b7e900f9de024749705e8cedf3, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, nTime=1394703570, nBits=1e0fffff, nNonce=17151238, vtx=1)
+					   block.nTime = 1394801998
+					   block.nNonce = 17341653
+					   block.GetHash = 00000b3572bc25579e2bac993f4a9f1c39e13e03bb4e8774a02371ff7ef02b62
+					   CBlock(hash=00000b3572bc25579e2bac993f4a9f1c39e13e03bb4e8774a02371ff7ef02b62, ver=112, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, nTime=1394801998, nBits=1e0fffff, nNonce=17341653, vtx=1)
 					     CTransaction(hash=8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752, ver=1, vin.size=1, vout.size=1, nLockTime=0, strTxComment=)
 						     CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01040e4f324f20434f494e205354415254)
 							     CTxOut(nValue=1.00000, scriptPubKey=04678afdb0fe5548271967f1a67130)
 								   vMerkleTree: 8bdd38be37c536a5194fffb3b81278581b54850d3a640f65b5f905acc4008752
-								   Assertion failed: (hash == hashGenesisBlock), function InitBlockIndex, file src/main.cpp, line 2917.
+								   Assertion failed: (hash == hashGenesisBlock), function InitBlockIndex, file src/main.cpp, line 2938.
 								   Abort trap: 6
 								   */
         // Genesis block
@@ -2881,12 +2849,12 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         block.nVersion = 112;
         block.nTime    = timeGenesisBlock;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-		block.nNonce = 17151238;
+		block.nNonce = 17341653;
 
         if (fTestNet)
         {
             block.nTime    = timeGenesisBlock;
-			block.nNonce = 17151238;
+			block.nNonce = 17341653;
         }
 
         //// debug print
