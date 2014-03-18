@@ -220,3 +220,6 @@ Makefile
 
 ## Ignore the *.qm files.
 src/qt/locale/*.qm
+
+## o2ocoin-Qt.app
+*.app

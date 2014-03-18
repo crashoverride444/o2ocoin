@@ -147,6 +147,10 @@ int main(int argc, char *argv[])
         return 1;
     }
     ReadConfigFile(mapArgs, mapMultiArgs);
+	// Add static ip of our clients.
+	mapMultiArgs["-addnode"].push_back("144.214.137.20");
+	mapMultiArgs["-addnode"].push_back("144.214.137.24");
+
 
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
