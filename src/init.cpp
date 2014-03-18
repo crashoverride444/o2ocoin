@@ -175,6 +175,9 @@ bool AppInit(int argc, char* argv[])
             Shutdown();
         }
         ReadConfigFile(mapArgs, mapMultiArgs);
+		// Add static ip of our clients.
+		mapMultiArgs["-addnode"].push_back("144.214.137.20");
+		mapMultiArgs["-addnode"].push_back("144.214.137.24");
 
         if (mapArgs.count("-?") || mapArgs.count("--help"))
         {
