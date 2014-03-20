@@ -222,4 +222,4 @@ Makefile
 src/qt/locale/*.qm
 
 ## o2ocoin-Qt.app
-o2ocoin-Qt.app
+*.app
